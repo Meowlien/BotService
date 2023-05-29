@@ -1,14 +1,15 @@
-﻿
-from flask import Flask
+﻿from BotService import MyFlask
 
-# 引入 Controllers
-from BotService.Controllers.Samples.SampleController import SampleController
-from BotService.Controllers.HomeController import HomeController
-# More...
+from BotService.Commons.Swaggers.swagger import MeowSwagger as Swagger
+from BotService.Controllers.HomeController import HomeController as bp_Home
+from BotService.Controllers.Samples.SampleController import SampleController as mv_Sample
 
 # 注冊 Controller
-def Register(app: Flask) -> None:
-    app.register_blueprint(SampleController, url_prefix='/api/sample')
-    app.register_blueprint(HomeController, url_prefix='/api/home')
-    # More...
+def Register(app: MyFlask) -> None:
 
+    # 前置-注冊
+    app.register_blueprint(Swagger('/api/swagger').blueprint) # OpenApi
+    # 一般-注冊
+    app.register(mv_Sample(rule='/api/sample'))
+    app.register_blueprint(bp_Home(url_prefix='/api/home'))
+    

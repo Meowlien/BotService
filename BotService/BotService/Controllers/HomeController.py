@@ -1,9 +1,21 @@
+﻿from flask import Flask
+from BotService.Commons.WebApiTemplate_Blueprint import WebApiTemplate
 
-from flask import Blueprint
+class HomeController(WebApiTemplate):
 
-HomeController = Blueprint('HomeController', __name__)
+    def __init__(self,
+        url_prefix=None
+    ) -> None:
+        super().__init__(
+            name = self.__class__.__name__,
+            name_import = __name__.replace('.', '_') + '_bp',
+            url_prefix = url_prefix
+        )
 
-@HomeController.route('/')
-@HomeController.route('/index')
-def Home_Index():
-    return 'This is Home Index For HomeController'
+    # 路由注冊
+    def register_local(self) -> None:
+        self.add_url_rule('/', view_func=self.index) # 導向指定方法
+        # More...
+
+    def index(self):
+        return 'This is Home Index For HomeController'

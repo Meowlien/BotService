@@ -1,44 +1,27 @@
-﻿"""
-Routes and views for the flask application.
-"""
+﻿from flask import Flask
+from BotService.Commons.WebApiTemplate_MethodView import WebApiTemplate
 
-from datetime import datetime
-from flask import render_template # 渲染模板
+class SampleController(WebApiTemplate):
 
-from flask import Blueprint
+    def __init__(self, rule: str = '/api') -> None:
+        super().__init__(__name__, rule)
+        self.view = SampleController.as_view(self.name)
 
-SampleController = Blueprint('SampleController', __name__)
+    # 藍圖注冊
+    #    self.blueprint = Blueprint(self._name + '_bp', __name__)
+    #    self.blueprint.add_url_rule('/', view_func=self.view, methods=['GET'])
 
-@SampleController.route('/')
-@SampleController.route('/index')
-def Sample_Index():
-    return 'This is Home Index For SampleController'
+    # 一般注冊(Base)
+    def register(self, app: Flask) -> None:
+        app.add_url_rule(self.rule + '/', view_func=self.view, methods=['GET'])
 
 
-#def home():
-#    """Renders the home page."""
-#    return render_template(
-#        'index.html',
-#        title='Home Page',
-#        year=datetime.now().year,
-#    )
 
-#@SampleController.route('/contact')
-#def contact():
-#    """Renders the contact page."""
-#    return render_template(
-#        'contact.html',
-#        title='Contact',
-#        year=datetime.now().year,
-#        message='Your contact page.'
-#    )
 
-#@SampleController.route('/about')
-#def about():
-#    """Renders the about page."""
-#    return render_template(
-#        'about.html',
-#        title='About',
-#        year=datetime.now().year,
-#        message='Your application description page.'
-#    )
+
+
+    def get(self):
+        return 'This is Get'
+
+    def post(self):
+        return 'This is Post'
