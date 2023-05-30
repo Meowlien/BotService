@@ -32,12 +32,12 @@
     <Compile Include="BotService\Commons\Swaggers\swagger.py" />
     <Compile Include="BotService\Commons\WebApiTemplate_Blueprint.py" />
     <Compile Include="BotService\Commons\WebApiTemplate_MethodView.py" />
-    <Compile Include="BotService\Controllers\HomeController.py" />
-    <Compile Include="BotService\Controllers\Samples\SampleController.py" />
+    <Compile Include="BotService\Controllers\Samples\BlueprintController.py" />
+    <Compile Include="BotService\Controllers\Samples\MethodViewController.py" />
+    <Compile Include="BotService\Logging\Logger.py" />
     <Compile Include="BotService\Routes.py" />
     <Compile Include="Program.py" />
     <Compile Include="BotService\__init__.py" />
-    <Compile Include="BotService\Controllers\Samples\-SampleController.py" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="BotService\" />
@@ -45,6 +45,7 @@
     <Folder Include="BotService\Controllers\" />
     <Folder Include="BotService\Controllers\Samples\" />
     <Folder Include="BotService\Commons\" />
+    <Folder Include="BotService\Logging\" />
     <Folder Include="BotService\static\" />
     <Folder Include="BotService\static\content\" />
     <Folder Include="BotService\static\fonts\" />
@@ -53,7 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="BotService\Commons\Swaggers\swagger.json" />
-    <Content Include="swagger.json" />
+    <Content Include="settings.ini" />
     <Content Include="requirements.txt" />
     <Content Include="BotService\static\content\bootstrap.css" />
     <Content Include="BotService\static\content\bootstrap.min.css" />
